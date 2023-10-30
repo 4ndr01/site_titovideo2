@@ -61,10 +61,7 @@ const SignupClient = () => {
                 }),
             });
 
-            if (age < 18) {
-                setError("Vous devez avoir au moins 18 ans");
-                return;
-            }
+
             if (res.ok) {
                 const form = e.target;
                 form.reset();
@@ -138,22 +135,7 @@ const SignupClient = () => {
                                             className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
                                         />
                                     </div>
-                                    <div className="mb-8">
-                                        <label
-                                            htmlFor="age"
-                                            className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                                        >
-                                            {" "}
-                                            Age{" "}
-                                        </label>
-                                        <input
-                                            onChange={(e) => setAge(e.target.value)}
-                                            type="number"
-                                            name="age"
-                                            placeholder="Entrez votre age"
-                                            className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                                        />
-                                    </div>
+
 
                                     <div className="mb-8 flex">
                                         <label

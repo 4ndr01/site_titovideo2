@@ -200,7 +200,6 @@ const Testimonials = () => {
           </defs>
         </svg>
       </div>
-      <SimpleSlider/>
     </section>
   );
 };

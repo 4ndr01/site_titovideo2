@@ -20,7 +20,6 @@ import Testimonials from "@/components/Testimonials";
 import ScrollToTop from "@/components/ScrollToTop";
 import Features from "@/components/Features";
 import Admin from "@/app/admin/page";
-import SimpleSlider from "@/components/SimpleSlider/slider";
 
 const stripePromise = loadStripe('pk_test_oKhSR5nslBRnBZpjO6KuzZeX');
 
