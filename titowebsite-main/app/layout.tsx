@@ -33,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
+  const hideHeaderAndFooter = window.location.pathname.includes('admin');
 
-  const hideHeaderAndFooter = window.location.pathname === ('/admin_client' || '/admin');
   return (
     <html lang="en">
         {/*

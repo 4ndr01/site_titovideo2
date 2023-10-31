@@ -11,10 +11,74 @@ import {useEffect, useState} from "react";
 import SectionTitle from '@/components/Common/SectionTitle';
 function Commande({userId}) {
     const [commandes, setCommandes] = useState([]);
+
+    const ordersData = [
+        {
+            id: 1,
+            number: 1,
+            title: 'Projet A',
+            price: 500,
+            status: 'En cours',
+            date: '2023-10-10',
+            editor: 'John Doe',
+            duration: '02:30:00',
+            description: 'Montage vidéo pour la publicité de produit A.',
+            format: 'MP4',
+            resolution: '1080p',
+            fps: 30,
+            sourceFilesLink: 'https://example.com/source-files1.zip',
+            revisionLink: 'https://example.com/revision1.mp4',
+            comments: 'Inclure la bande-son fournie.',
+            desiredDeliveryDate: '2023-11-15',
+            actualDeliveryDate: '2023-11-14'
+        },
+        {
+            id: 2,
+            number: 2,
+            title: 'Projet B',
+            price: 600,
+            status: 'En cours',
+            date: '2023-10-11',
+            editor: 'George Abtibol',
+            duration: '03:45:00',
+            description: 'Montage vidéo pour le documentaire sur la nature.',
+            format: 'MP4',
+            resolution: '4K',
+            fps: 24,
+            sourceFilesLink: 'https://example.com/source-files2.zip',
+            revisionLink: 'https://example.com/revision2.mp4',
+            comments: 'Utiliser des transitions douces entre les scènes.',
+            desiredDeliveryDate: '2023-11-20',
+            actualDeliveryDate: '2023-11-18'
+        },
+        // ... et ainsi de suite pour les autres commandes
+        {
+            id: 10,
+            number: 10,
+            title: 'Projet J',
+            price: 400,
+            status: 'Terminé',
+            date: '2023-10-20',
+            editor: 'Sarah Connor',
+            duration: '01:15:00',
+            description: 'Montage vidéo pour le clip musical XYZ.',
+            format: 'MP4',
+            resolution: '1080p',
+            fps: 60,
+            sourceFilesLink: 'https://example.com/source-files10.zip',
+            revisionLink: 'https://example.com/revision10.mp4',
+            comments: 'Inclure des effets visuels synchronisés avec la musique.',
+            desiredDeliveryDate: '2023-11-05',
+            actualDeliveryDate: '2023-11-04'
+        }
+    ];
+    
+
+
     useEffect(() => {
         async function getMessages() {
             try {
-                const response = await fetch('/api/commandes_id/${userId}', {
+                const response = await fetch(`/api/commandes_id/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -43,43 +107,32 @@ function Commande({userId}) {
                 center
                 width="635px"
             />
-            <div className="container px-4 mx-auto">
-                <TableContainer  className="bg-white shadow-md rounded my-6">
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead className="bg-gray-50 dark:bg-gray-800">
-                            <TableRow>
-
-                                <TableCell align="right">Email</TableCell>
-                                <TableCell align="right">Musique</TableCell>
-                                <TableCell align="right">Date</TableCell>
-                                <TableCell align="right">ID</TableCell>
-                                <TableCell align="right">Style</TableCell>
-                                <TableCell align="right">Format</TableCell>
-
-
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {commandes.map((t) => (
-                                <TableRow
-                                    key={t._id}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-
-                                    </TableCell>
-                                    <TableCell  >{t.email}</TableCell>
-                                    <TableCell>{t.sound}</TableCell>
-                                    <TableCell>{t.date}</TableCell>
-                                    <TableCell align="right">{t._id}</TableCell>
-                                    <TableCell align="right">{t.selectedChoice}</TableCell>
-                                    <TableCell align="right">{t.selectedStyle}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
+             <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4">Liste des Commandes</h1>
+            <ul className="flex flex-col space-y-4">
+                {commandes.map(order => (
+                    <li key='{order.id}' className="flex justify-between border p-4 rounded shadow">
+                        <div className="flex-1">
+                            <h2 className="text-xl font-semibold">{order.title}</h2>
+                            <p>{order.description}</p>
+                        </div>
+                        <div className="flex-1">
+                            <p><strong>Editor:</strong> {order.editor}</p>
+                            <p><strong>Date:</strong> {order.date}</p>
+                            <p><strong>Status:</strong> {order.status}</p>
+                        </div>
+                        <div className="flex-1">
+                            <p><strong>Price:</strong> ${order.price}</p>
+                            <p><strong>Duration:</strong> {order.duration}</p>
+                        </div>
+                        <div className="flex-1">
+                            <a href={order.sourceFilesLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Source Files</a>
+                            <a href={order.revisionLink} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">Revision Link</a>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
         </section>
     );
 

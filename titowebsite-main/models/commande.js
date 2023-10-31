@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 const commandeSchema = new Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-
+    clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
 
     email:{
         type: String,
@@ -9,7 +9,7 @@ const commandeSchema = new Schema({
         match: [/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/i, "Invalid email address"],
     },
 
-    sound:{
+    commentary:{
         type: String,
     },
     date: {
@@ -19,9 +19,6 @@ const commandeSchema = new Schema({
     name:{
         type: String,
     },
-    selectedChoice:{
-        type: String,
-    },
     tito:{
         type: Number,
     },
@@ -29,7 +26,10 @@ const commandeSchema = new Schema({
         type: String,
         enum: ["En attente", "En cours", "Terminé"],
         default: "En attente",
-    }
+    },
+    desiredDeliveryDate:{
+        type: Date,
+    },
 
 
 

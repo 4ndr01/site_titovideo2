@@ -63,7 +63,7 @@ export default async function BasicTable (){
               <TableCell align="right">Email</TableCell>
               <TableCell  >{t.email}</TableCell>
               <TableCell align="right">Info</TableCell>
-              <TableCell>{t.sound}</TableCell>
+              <TableCell>{t.commentary}</TableCell>
                 <TableCell align="right">Date</TableCell>
                 <TableCell>{t.date}</TableCell>
                 <TableCell align="right">Format</TableCell>

@@ -16,7 +16,7 @@ const MontageForm = () => {
   const [selectedChoice, setSelectedChoice] = useState('');
   const [switchValue, setSwitchValue] = useState(false);
   const [email, setEmail] = useState("");
-  const [sound, setSound] = useState("");
+  const [commentary, setCommentary] = useState("");
   const [name, setName] = useState("");
   const router = useRouter();
   const tito = 1;
@@ -57,13 +57,13 @@ const submit = async (e) => {
             selectedChoice,
             switchValue,
             email,
-            sound,
+            commentary,
             name,
             tito,
         }),
     }).then((res) => {
         if (res.ok) {
-            router.push("/paiment");
+            router.push("/");
         }
     })
     localStorage.getItem("tarifs")
@@ -145,7 +145,7 @@ const submit = async (e) => {
                 rows="7"
                 placeholder='Dites nous en plus sur votre projet'
                 className="w-full rounded-md border border-transparent py-3 px-6 text-base text-body-color placeholder-body-color shadow-one outline-none focus:border-primary focus-visible:shadow-none dark:bg-[#242B51] dark:shadow-signUp"
-                onChange={(e) => setSound(e.target.value)}
+              onChange={(e) => setCommentary(e.target.value)}
             />
         </div>
 
