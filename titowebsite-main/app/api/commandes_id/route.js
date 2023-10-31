@@ -9,7 +9,6 @@ connectDB();
 
 export default async (req, res) => {
     const { userId } = req.query;
-
     try {
         // Recherchez les commandes de l'utilisateur
         const orders = await Commande.find({ userId }).exec();

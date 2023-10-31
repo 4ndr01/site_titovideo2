@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 const commandeSchema = new Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client' },
+
 
     email:{
         type: String,
@@ -19,6 +19,7 @@ const commandeSchema = new Schema({
     name:{
         type: String,
     },
+
     tito:{
         type: Number,
     },
@@ -39,8 +40,9 @@ const commandeSchema = new Schema({
 
 
 
+
 });
 
 const Commande = mongoose.models.Commande || mongoose.model("Commande", commandeSchema);
 
-export default commandeSchema;
+export default Commande;

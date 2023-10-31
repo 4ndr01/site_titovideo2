@@ -12,6 +12,7 @@ import SectionTitle from '@/components/Common/SectionTitle';
 import { useParams } from 'next/navigation';
 function Commande({userId}) {
     const [commandes, setCommandes] = useState([]);
+
     const ordersData = [
         {
             id: 1,
@@ -78,7 +79,7 @@ function Commande({userId}) {
     useEffect(() => {
         async function getMessages() {
             try {
-                const response = await fetch(`/api/commandes_id/${userId}`, {
+                const response = await fetch('/api/commandes_id/${userId}', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ function Commande({userId}) {
 }
         }
         getMessages().then(r => console.log(r));
-    }, []);
+    }, [userId]);
     return (
 
 
@@ -110,7 +111,7 @@ function Commande({userId}) {
              <div className="p-6">
             <h1 className="text-2xl font-bold mb-4">Liste des Commandes</h1>
             <ul className="flex flex-col space-y-4">
-                {ordersData.map(order => (
+                {commandes.map(order => (
                     <li key='{order.id}' className="flex justify-between border p-4 rounded shadow">
                         <div className="flex-1">
                             <h2 className="text-xl font-semibold">{order.title}</h2>
