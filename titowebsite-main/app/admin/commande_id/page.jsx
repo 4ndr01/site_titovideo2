@@ -9,9 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {useEffect, useState} from "react";
 import SectionTitle from '@/components/Common/SectionTitle';
+import { useParams } from 'next/navigation';
 function Commande({userId}) {
     const [commandes, setCommandes] = useState([]);
-
+    const currentUserId = useParams();
+    console.log(userId);
     const ordersData = [
         {
             id: 1,
@@ -95,7 +97,7 @@ function Commande({userId}) {
 }
         }
         getMessages().then(r => console.log(r));
-    }, [userId]);
+    }, []);
     return (
 
 
@@ -110,7 +112,7 @@ function Commande({userId}) {
              <div className="p-6">
             <h1 className="text-2xl font-bold mb-4">Liste des Commandes</h1>
             <ul className="flex flex-col space-y-4">
-                {commandes.map(order => (
+                {ordersData.map(order => (
                     <li key='{order.id}' className="flex justify-between border p-4 rounded shadow">
                         <div className="flex-1">
                             <h2 className="text-xl font-semibold">{order.title}</h2>

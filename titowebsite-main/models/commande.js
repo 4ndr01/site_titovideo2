@@ -43,4 +43,4 @@ const commandeSchema = new Schema({
 
 const Commande = mongoose.models.Commande || mongoose.model("Commande", commandeSchema);
 
-export default Commande;
+export default commandeSchema;
