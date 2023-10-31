@@ -1,5 +1,5 @@
 import mongoose, { Schema, models } from "mongoose";
-import commandeSchema from "./commande";
+
 
 const clientSchema = new Schema(
     {
@@ -14,8 +14,7 @@ const clientSchema = new Schema(
         password: {
             type: String,
             required: true,
-        },
-        commandes: [commandeSchema],
+        }
     },
     { timestamps: true }
 );

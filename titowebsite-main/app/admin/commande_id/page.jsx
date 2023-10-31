@@ -12,8 +12,6 @@ import SectionTitle from '@/components/Common/SectionTitle';
 import { useParams } from 'next/navigation';
 function Commande({userId}) {
     const [commandes, setCommandes] = useState([]);
-    const currentUserId = useParams();
-    console.log(userId);
     const ordersData = [
         {
             id: 1,
