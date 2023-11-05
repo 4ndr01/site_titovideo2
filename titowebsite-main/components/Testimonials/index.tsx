@@ -1,11 +1,15 @@
-import { Testimonial } from "@/types/testimonial";
-import SectionTitle from "../Common/SectionTitle";
-import SingleTestimonial from "./SingleTestimonial";
-import SimpleSlider from "@/components/SimpleSlider/slider";
-const testimonialData: ({ image: string; star: number; name: string; id: number; content: string } | { image: string; star: number; name: string; id: number; content: string } | { image: string; star: number; name: string; id: number; content: string } | { image: string; star: number; name: string; id: number; content: string } | { name: string; id: number; content: string })[] = [
+import React from 'react';
+import SingleTestimonial from './SingleTestimonial';
+import { Testimonial } from '../../../titowebsite-main/types/testimonial'; 
+import SectionTitle from '../Common/SectionTitle'; 
+import TestimonialSliders from './TestimonialCarousel';
+
+
+const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: "CLara",
+    name: "Clara",
+    designation: "Client satisfait",
     content:
     "Merci beaucoup pour la qualité du travail fourni, une équipe qui sait être à l’écoute des clients et se montre toujours très agréable et disponible ! Je recommande vivement. ",
     image: "/images/testimonials/unnamed.png",
@@ -14,6 +18,7 @@ const testimonialData: ({ image: string; star: number; name: string; id: number;
   {
     id: 2,
     name: "Christopher",
+    designation: "Client satisfait",
     content:
     "Merci Titovideo pour votre écoute, votre réactivité et votre professionnalisme.\n" +
         "Vous avez parfaitement répondu à ma demande.\n" +
@@ -25,6 +30,7 @@ const testimonialData: ({ image: string; star: number; name: string; id: number;
   {
     id: 3,
     name: "Alexandre Ozini",
+    designation: "Client satisfait",
     content:
     "Très professionnels, à l'écoute et réactifs, j'ai reçu ma vidéo en 24h.  Si vous avez besoin de déléguer vos montages je vous recommande Titovideo !",
     image: "/images/testimonials/alexandre.png",
@@ -33,12 +39,14 @@ const testimonialData: ({ image: string; star: number; name: string; id: number;
   {
     id: 4,
     name: "Lucie Gerard",
+    designation: "Client satisfait",
     content: "Super montage vidéo pour le mariage de ma sœur !! Merci beaucoup à toute l’équipe.",
     image: "/images/testimonials/lucie.png",
     star:5,
   },
   {id:5,
     name: "Tom Toulgoat",
+    designation: "Client satisfait",
     content:"Montage réalisé grâce à Titovideo.\n" +
         "Je suis satisfait de la prestation réalisée.\n" +
         "Merci",
@@ -48,6 +56,7 @@ const testimonialData: ({ image: string; star: number; name: string; id: number;
   {
     id:6,
     name: "Ulysse Jaffré",
+    designation:"Client satisfait",
     content:"Très professionnel et efficace ! Un rendu de qualité.",
     image:"/images/testimonials/ulysse.png",
     star:5,
@@ -66,12 +75,10 @@ const Testimonials = () => {
           center
         />
 
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {testimonialData.map((testimonial) => (
-            <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
-          ))}
+        <TestimonialSliders testimonials={testimonialData} />
+
         </div>
-      </div>
+
       <div className="absolute top-5 right-0 z-[-1]">
         <svg
           width="238"
@@ -200,7 +207,6 @@ const Testimonials = () => {
           </defs>
         </svg>
       </div>
-      <SimpleSlider/>
     </section>
   );
 };

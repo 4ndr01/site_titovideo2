@@ -1,0 +1,31 @@
+.testimonial-container {
+  width: 100%; /* Largeur explicite */
+  flex-direction: row;  
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  display: none;
+  /* autres styles nécessaires pour un slide caché */
+}
+
+.slide.active {
+  display: block;
+  /* autres styles nécessaires pour un slide actif */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
