@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const hideHeaderAndFooter = window.location.pathname.includes('admin');
+  const hideHeaderAndFooter = typeof window !== 'undefined' && window.location.pathname.includes('admin');
 
   return (
     <html lang="en">
@@ -45,11 +45,13 @@ export default function RootLayout({
       <body className="dark:bg-black">
       <NextAuthProvider>
           <Elements stripe={stripePromise}>
-          {!hideHeaderAndFooter && <Header />}
+          {/* {!hideHeaderAndFooter && <Header />} */}
+          <Header />
               {children}
           </Elements>
           <ScrollToTop />
-          {!hideHeaderAndFooter && <Footer />}
+          {/* {!hideHeaderAndFooter && <Footer />} */}
+          <Footer />
       </NextAuthProvider>
       </body>
     </html>

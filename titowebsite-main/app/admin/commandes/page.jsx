@@ -28,6 +28,8 @@ const getMessages = async () => {
 
 export default async function BasicTable (){
     const {commande}  = await getMessages();
+    console.log(commande);
+
 
   return (
     <section id="portfolio" className="relative z-10 py-16 md:py-20 lg:py-28">
@@ -38,42 +40,34 @@ export default async function BasicTable (){
       center
       width="635px"
     />
-      <div className="container px-4 mx-auto">
-      <TableContainer  className="bg-white shadow-md rounded my-6">
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead className="bg-gray-50 dark:bg-gray-800">
-          <TableRow>
-
-
-
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
-
-          <TableCell align="right">Format</TableCell>
-        {commande.map((t) => (
-            <TableRow
-              key={t._id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-
-              </TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell  >{t.email}</TableCell>
-              <TableCell align="right">Info</TableCell>
-              <TableCell>{t.commentary}</TableCell>
-                <TableCell align="right">Date</TableCell>
-                <TableCell>{t.date}</TableCell>
-                <TableCell align="right">Format</TableCell>
-              <TableCell align="right">{t.selectedChoice}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </div>
+     <div className="p-6">
+            <h1 className="text-2xl font-bold mb-4">Liste des Commandes</h1>
+            <ul className="flex flex-col space-y-4">
+                {commande.map(order => (
+                    <li key={`orders-${order._id}`} className="flex justify-between border p-4 rounded shadow">
+                        <div className="flex-1">
+                            <p className="font-semibold">{order._id}</p>
+                            <p>{order.email}</p>
+                        </div>
+                        <div className="flex-1">
+                           
+                            <p><strong>Commentary:</strong> {order.commentary}</p>
+                            <p><strong>Status:</strong> {order.etat}</p>
+                        </div>
+                        <div className="flex-1">
+                            <p><strong>Nom:</strong> ${order.name}</p>
+                            <p><strong>Format:</strong> {order.selectedChoice}</p>
+                        </div>
+                        <div className="flex-1">
+                           {/* TODO users.map() -> handleClick(fetch chooseUser) */}
+                        <p><strong>Monteur:</strong> ${order.name}</p>
+                            <p><strong>Format:</strong> {order.selectedChoice}</p>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
+   
     </section>
   );
 }
