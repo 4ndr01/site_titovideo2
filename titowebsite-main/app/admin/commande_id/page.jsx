@@ -71,9 +71,30 @@ export default function Commande({ userId }) {
             </p>
             <ul>
               {commandes.map((commande, index) => (
-                <li key={index}>{commande._id}</li>
+                <li key={index}>
+                  <strong>ID:</strong> {commande._id}
+                  <br />
+                  <strong>Email:</strong> {commande.email}
+                  <br />
+                  <strong>Name:</strong> {commande.name}
+                  <br />
+                  <strong>Selected Choice:</strong>
+                  <ul>
+                    {commande.selectedChoice.map((choice, choiceIndex) => (
+                      <li key={choiceIndex}>{choice}</li>
+                    ))}
+                  </ul>
+                  <br />
+                  <strong>Sound:</strong>
+                  <ul>
+                    {commande.sound.map((sound, soundIndex) => (
+                      <li key={soundIndex}>{sound}</li>
+                    ))}
+                  </ul>
+                </li>
               ))}
             </ul>
+            
           </div>
         </div>
       </div>
