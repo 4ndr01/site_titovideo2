@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import SectionTitle from '@/components/Common/SectionTitle';
 import { useSession } from 'next-auth/react';
 
-const getOrdersByEmail = async () => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/commandes_id`, {
-      method: "GET",
-      cache: "no-store",
-    });
+const getMessages = async (userEmail) => {
+    try {
+        const res = await fetch(`http://localhost:3000/api/commandes_id?email=${encodeURIComponent(userEmail)}`, {
+          method: "GET",
+          cache: "no-store",
+        });
 
     if (!res.ok) {
       throw new Error("Failed to fetch messages");
@@ -22,21 +22,20 @@ const getOrdersByEmail = async () => {
   }
 };
 
-export default function Commande() {
+export default function Commande({ userId }) {
   const { data: session } = useSession();
   const [commandes, setCommandes] = useState([]);
   
   useEffect(() => {
-    getOrdersByEmail()
-      .then((data) => {
-        const filteredCommandes = data.commande.filter(
-          (commande) => commande.email === session?.user?.email
-        );
-        setCommandes(filteredCommandes);
-      })
-      .catch((error) => {
-        console.error("Error fetching commandes:", error);
-      });
+    if (session?.user?.email) {
+      getMessages(session.user.email)
+        .then((data) => {
+          setCommandes(data.commande);
+        })
+        .catch((error) => {
+          console.error("Error fetching commandes:", error);
+        });
+    }
   }, [session]);
 
   return (
@@ -69,7 +68,7 @@ export default function Commande() {
 
             <div className="flex flex-col space-y-4">
               <span className="text-gray-700 font-bold">Commandes:</span>
-              {commandes.map((commande, index) => (
+              {commandes?.map((commande, index) => (
                 <div key={index} className=" p-3 rounded shadow">
                   <p className="font-bold">ID:</p> {commande._id}
                   <p className="font-bold">Email:</p> {commande.email}
@@ -77,7 +76,7 @@ export default function Commande() {
                   <div>
                     <p className="font-bold">Selected Choice:</p>
                     <ul className="list-disc pl-5">
-                      {commande.selectedChoice?.map((choice, choiceIndex) => (
+                      {commande.selectedChoice.map((choice, choiceIndex) => (
                         <li key={choiceIndex}>{choice}</li>
                       ))}
                     </ul>
@@ -85,11 +84,12 @@ export default function Commande() {
                   <div>
                     <p className="font-bold">Sound:</p>
                     <ul className="list-disc pl-5">
-                      {commande.sound?.map((sound, soundIndex) => (
+                      {commande.sound.map((sound, soundIndex) => (
                         <li key={soundIndex}>{sound}</li>
                       ))}
                     </ul>
                   </div>
+                  
                 </div>
               ))}
             </div>

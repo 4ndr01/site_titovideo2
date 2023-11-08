@@ -17,10 +17,10 @@ const clientSchema = new Schema(
         // Ajoutez d'autres champs utilisateur ici
         commande: [{ type: Schema.Types.ObjectId, ref: "Commande" }],
         selectedChoice: {
-            type: String,
+            type: [],
         },
         sound: {
-            type: String,
+            type: [],
         },
         etat: {
             type: String,
