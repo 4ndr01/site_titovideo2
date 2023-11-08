@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import connectMongoDB from "../../../libs/mongodb";
 import {array} from "yup";
+import { useSession } from "next-auth/react";
 
 
 // Connectez-vous à la base de données MongoDB
@@ -12,9 +13,11 @@ connectDB();
 
 export async function GET(request) {
     try {
+   
         await connectMongoDB()
-        const commande = await User.find().select('email sound name selectedChoice etat')
-        return NextResponse.json({commande})
+        const commandes = await User.find().select('email sound name selectedChoice etat')
+        console.log(commandes);
+        return NextResponse.json({commandes})
     }
 catch (error) {
         console.log(error)

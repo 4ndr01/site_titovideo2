@@ -34,8 +34,8 @@ export default function RootLayout({
 }) {
 
 
-  const hideHeaderAndFooter = window.location.pathname === ('/admin_client' || '/admin');
-  return (
+  const hideHeaderAndFooter = window.location.pathname.includes('admin');
+    return (
     <html lang="en">
         {/*
         <head /> will contain the components returned by the nearest parent
