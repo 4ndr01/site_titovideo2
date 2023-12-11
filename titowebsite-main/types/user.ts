@@ -1,13 +1,13 @@
-import { IOrder } from "./order";
+import { Order } from "./order";
 
 // Base User Type
-export interface IUser {
+export interface User {
     userID: number;
     username: string;
     password: string;
     email: string;
     token: null | string;
-    orders: IOrder[];
+    orders: Order[];
     creationDate: Date;
     lastLogin: Date | null;
     role: 'client' | 'prestataire' | 'admin'; // Maintaining the role for access control
@@ -15,7 +15,7 @@ export interface IUser {
 
   
 // Client Type
-export interface IClient extends IUser  {
+export interface Client extends User  {
   // Client-specific properties
   subscriptionType?: string; // Optional, depends on whether the client has a subscription
   titoPoints?: number; // Optional, depends on whether the loyalty system is in place
@@ -23,7 +23,7 @@ export interface IClient extends IUser  {
 };
 
 // Prestataire (Monteur) Type
-export interface IPrestataire extends IUser  {
+export interface Prestataire extends User  {
   // Prestataire-specific properties
   servicesOffered: Service[]; // Array of services that the prestataire offers
   availability: Availability[];
@@ -34,7 +34,7 @@ export interface IPrestataire extends IUser  {
 };
 
 // Admin Type
-export interface IAdmin extends IUser  {
+export interface Admin extends User  {
   // Admin-specific properties
   accessLevel: string; // Defines the level of access this admin has
   // ... other admin-specific fields
