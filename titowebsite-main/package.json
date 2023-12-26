@@ -28,7 +28,7 @@
     "bcryptjs": "^2.4.3",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
-    "dialogflow": "^1.2.0",
+    "dialogflow": "^4.0.3",
     "docker": "^0.2.14",
     "flowbite-react": "^0.5.0",
     "framer-motion": "^10.16.1",
